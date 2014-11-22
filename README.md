@@ -10,10 +10,11 @@ The app was pretty basic but it was fun to use, and ended up with over a million
 
 ### Server
 
+First, copy config_example.js to config.js.  Then, edit the file to include your facebook app info. Finally, run the following commands:s 
 ```
 npm install
 bower install
 node server.js
 ```
 
-Special thanks to [Scotch](http://scotch.io/tutorials/javascript/use-ejs-to-template-your-node-application) for help working with ejs
+Special thanks to [Scotch](http://scotch.io/tutorials/javascript/use-ejs-to-template-your-node-application) for help working with ejs!
