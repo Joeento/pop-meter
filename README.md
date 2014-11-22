@@ -15,3 +15,5 @@ npm install
 bower install
 node server.js
 ```
+
+Special thanks to [Scotch](http://scotch.io/tutorials/javascript/use-ejs-to-template-your-node-application) for help working with ejs
