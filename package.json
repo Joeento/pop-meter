@@ -4,6 +4,7 @@
   "dependencies": {
     "express": "~4.0.0",
     "body-parser": "~1.0.1",
+    "ejs": "^1.0.0",
     "fb": "~0.7.0"
   }
 }
