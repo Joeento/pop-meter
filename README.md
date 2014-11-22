@@ -12,5 +12,6 @@ The app was pretty basic but it was fun to use, and ended up with over a million
 
 ```
 npm install
+bower install
 node server.js
 ```
