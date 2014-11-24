@@ -1,5 +1,8 @@
 var express = require('express');
+var url = require('url');
+var FB = require('FB');
 var config = require('./config');
+
 var app = express();
 
 app.use('/static', express.static(__dirname + '/static'));
@@ -15,8 +18,21 @@ app.get('/auth', function(req, res) {
 });
 
 app.get('/results', function(req, res) {
-
-	res.render('pages/results');
+    var url_parts = url.parse(req.url, true);
+	FB.api('oauth/access_token', {
+    	client_id: config.app_id,
+    	client_secret: config.app_secret,
+    	redirect_uri: 'http://localhost:8080/results',
+    	code: url_parts.query.code
+	}, function (response) {
+    	if(!response || response.error) {
+        	console.log(!response ? 'error occurred' : response.error);
+        	return;
+		}
+        res.render('pages/results', {access_token: response.access_token});
+	});
+    //Log an error?
+	
 });
 
 app.listen(8080);
