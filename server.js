@@ -35,7 +35,6 @@ app.get('/results', function(req, res) {
         var max_friends = 600;
         var three_weeks_ago = new Date();
         three_weeks_ago.setDate(three_weeks_ago.getDate()-21);
-        console.log(three_weeks_ago.getTime());
         var max_photos = 5;
         var max_stream = 5;
         var max_likes = 15;
@@ -44,7 +43,7 @@ app.get('/results', function(req, res) {
                 console.log(!friends ? 'error occurred' : friends.error);
                 return;
             }
-            FB.api('me/photos', {since: three_weeks_ago.getTime()}, function (photos) {
+            FB.api('me/photos', {since: Math.floor(three_weeks_ago.getTime()/1000)}, function (photos) {
                 if(!photos || photos.error) {
                     console.log(!photos ? 'error occurred' : photos.error);
                     return;
@@ -70,7 +69,7 @@ app.get('/results', function(req, res) {
                     console.log("(("  +total_friends+"/"+max_friends+")*20)" 
                         + "+ ((" + total_photos+ "/"+max_photos+")*10)"
                         +" + ((" + total_likes + "/"+max_likes+"*10) + 60;");
-                    res.render('pages/results', {pop: parseInt(pop)});
+                    res.render('pages/results', {pop: Math.round(pop)});
                 });
             });
 
