@@ -1,6 +1,6 @@
 var express = require('express');
 var url = require('url');
-var FB = require('FB');
+var FB = require('fb');
 var config = require('./config');
 
 var app = express();
