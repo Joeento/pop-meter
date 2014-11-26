@@ -4,7 +4,7 @@
   "repository": {
 	"type": "git",
 	"url": "https://github.com/Joeento/pop-meter.git"
-  }
+  },
   "dependencies": {
     "express": "~4.0.0",
     "body-parser": "~1.0.1",
