@@ -19,14 +19,38 @@
 
 	<main>
 		<div class="lead">
-			<h1>Your score is <%= pop %>&#37;</h1>
-			<p>Or something...I don't know.</p>
+			<h3>Your score is <%= pop %>&#37;</hh3>
+			<h4><%=byline%></h4>
+			<a id="facebook-post" href="#">Post to Facebook?</a>
+			<img src="static/img/<%=image%>.png" height="100"/>
+			<h5><%=desc%></h5>
 		</div>
 	</main>
 
 	<footer>
 
 	</footer>
+	<div id="fb-root"></div>
+	<script src="/static/js/libs/jquery/dist/jquery.min.js"></script>
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
+	<script>
+		FB.init({
+			appId  : '<%=app_id%>',
+			status : true, // check login status
+	   		cookie : true, // enable cookies to allow the server to access the session
+		});
+		$('#facebook-post').click(function() {
+			var pop = <%=pop%>;
+			var body = "just scored "+(pop)+"% on the Popularity Meter.  Find yours at http://goo.gl/oL7jfX";
+			FB.api('/me/feed', 'post', { message: body }, function(response) {
+				if (!response || response.error) {
+					alert('Error occured:'+ JSON.stringify(response.error));
+				} else {
+					alert("Post successful");
+				}
+			});
+		})
+ 	</script>
 	
 </body>
 </html>

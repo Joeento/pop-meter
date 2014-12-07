@@ -86,10 +86,29 @@ app.get('/results', function(req, res) {
                         + ((total_photos/max_photos)*10)
                         + ((total_likes/max_likes)*10)
                         + 60;
+                    pop = Math.round(pop);
+
+                    var byline = 'YOU ARE WELL KNOWN';
+                    var image = 70;
+                    var desc = 'You are recognizable around your community.  However, if you are not happy, we reccomend introducing yourself to more people, maybe takign some pictures when you go out with friends.'
+                    if (pop >= 70 && pop < 80) {
+                        byline = 'YOU ARE FAIRLY POPULAR'
+                        image = 70;
+                        desc = 'Nice job!  You have reached a level of popularity in life you should be proud of.  However, if you are not happy, we reccomend introducing yourself to more people, maybe takign some pictures when you go out with friends.'
+                    } else if (pop >= 80 && pop < 90) {
+                        byline = 'YOU ARE PRETTY POPULAR'
+                        image = 80;
+                        desc = 'People must look up to you because your popularity is impressive.  The only thing that could make you any better is if you introduced yourself to more people and networked, but you\'re doing pretty well on your own.';
+                    } else if (pop >= 90 && pop < 80) {
+                        byline = 'YOU ARE REALLY POPULAR!!!'
+                        image = 90;
+                        desc = 'Wow!  You are incredibly popular, you have lots of friends and are constantly being included.  Congratulations!!!';
+                    }
                     log.info({pop: pop, math: "(("  +total_friends+"/"+max_friends+")*20)" 
                         + "+ ((" + total_photos+ "/"+max_photos+")*10)"
                         +" + ((" + total_likes + "/"+max_likes+"*10) + 60;"}, 'success');
-                    res.render('pages/results', {pop: Math.round(pop)});
+
+                    res.render('pages/results', {pop: pop, byline: byline, image: image, desc: desc, app_id: config.app_id});
                 });
             });
 
