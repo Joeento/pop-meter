@@ -14,11 +14,11 @@ var log = bunyan.createLogger({
     streams: [
         {
             level: 'info',
-            path: 'access.log'
+            path: config.logs.info
         },
         {
             level: 'error',
-            path: 'error.log'
+            path: config.logs.error
         }
     ]
 });
@@ -104,4 +104,4 @@ app.get('/results', function(req, res) {
 });
 
 app.listen(config.port);
-log.info('Server has started on port' + config.port);
+log.info('Server has started on port ' + config.port);
