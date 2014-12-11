@@ -39,6 +39,8 @@
 			status : true, // check login status
 	   		cookie : true, // enable cookies to allow the server to access the session
 		});
+	</script>
+	<script>
 		$('#facebook-post').click(function() {
 			var pop = <%=pop%>;
 			var body = "just scored "+(pop)+"% on the Popularity Meter.  Find yours at http://goo.gl/oL7jfX";
@@ -46,11 +48,19 @@
 				if (!response || response.error) {
 					alert('Error occured:'+ JSON.stringify(response.error));
 				} else {
-					alert("Post successful");
+					alert("Post successful!");
 				}
 			});
 		})
  	</script>
-	
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		
+		(function() {
+		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script> 
 </body>
 </html>
