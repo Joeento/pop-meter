@@ -50,6 +50,7 @@ app.get('/results', function(req, res) {
         log.info({code: url_parts.query.code,response: response},'access_token');
     	if(!response || response.error) {
             log.error({level: 'response', error: response.error});
+            res.redirect('/');
         	return;
 		}
         FB.setAccessToken(response.access_token);
