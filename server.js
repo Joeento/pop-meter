@@ -118,12 +118,14 @@ app.get('/results', function(req, res) {
         });
 
         /* Algorithm ends here */
-
-       
 	});
     //Log an error?
 	
-});
+    });
+    
+    app.get('/contact', function(req, res) {
+        res.render('pages/contact');
+    });
 
 app.listen(config.port);
 log.info('Server has started on port ' + config.port);
