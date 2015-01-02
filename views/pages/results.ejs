@@ -10,6 +10,9 @@
 	<link rel="stylesheet" href="/static/js/libs/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/js/libs/bootstrap-social/bootstrap-social.css">
 	<link rel="stylesheet" href="/static/css/main.css">
+	<style>
+		body 	{ margin-top:15px; }
+	</style>
 </head>
 <body>
 	<nav class="navbar  navbar-inverse navbar-fixed-top" role="navigation">
@@ -27,11 +30,18 @@
 	</nav>
 	<div class="jumbotron">
 		<div class="container">
-			<h3>Your score is <%= pop %>&#37;</hh3>
-			<h4><%=byline%></h4>
-			<a id="facebook-post" href="#">Post to Facebook?</a>
-			<img src="static/img/<%=image%>.png" height="100"/>
-			<h5><%=desc%></h5>
+			<div class="row">
+			  <div class="col-md-4">
+			  	<br />
+			  	<img src="static/img/<%=image%>.png" height="100"/>
+			  </div>
+			  <div class="col-md-8">
+				<h3>Your score is <%= pop %>&#37;</hh3>
+				<h4><%=byline%></h4>
+				<h5><%=desc%></h5>
+				<h5><a id="facebook-post" href="#">Post to Facebook?</a></h5>
+			  </div>
+			</div>
 		</div>
 	</div>
 
