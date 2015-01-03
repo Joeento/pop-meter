@@ -127,5 +127,8 @@ app.get('/results', function(req, res) {
         res.render('pages/contact');
     });
 
+    app.get('/privacy-policy', function(req, res) {
+        res.render('pages/privacy-policy');
+    });
 app.listen(config.port);
 log.info('Server has started on port ' + config.port);
