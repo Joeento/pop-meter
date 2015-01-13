@@ -6,6 +6,7 @@
     "bootstrap-social": "latest",
     "font-awesome": "latest",
     "animate.css": "latest",
-    "jquery": "latest"
+    "jquery": "latest",
+    "log4javascript": "latest"
   }
 }
