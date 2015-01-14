@@ -16,7 +16,7 @@ app.use(bodyParser());
 app.set('view engine', 'ejs');
 
 var log = bunyan.createLogger({
-    name: 'myapp',
+    name: 'pop-meter',
     streams: [
         {
             level: 'info',
