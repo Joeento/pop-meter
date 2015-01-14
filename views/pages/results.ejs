@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="/static/js/libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/js/libs/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/js/libs/bootstrap-social/bootstrap-social.css">
-	<link rel="stylesheet" href="/static/css/main.css">
+
 	<style>
 		body 	{ margin-top:15px; }
 	</style>
@@ -52,6 +52,7 @@
 	</div>
 	</footer>
 	<div id="fb-root"></div>
+	<script src="/static/js/libs/log4javascript/log4javascript.js"></script>
 	<script src="/static/js/libs/jquery/dist/jquery.min.js"></script>
 	<script src="http://connect.facebook.net/en_US/all.js"></script>
 	<script>
@@ -62,6 +63,13 @@
 		});
 	</script>
 	<script>
+		$(document).ready(function() {
+			var log = log4javascript.getDefaultLogger();
+			var ajaxAppender = new log4javascript.AjaxAppender('/log');
+			log.addAppender(ajaxAppender);
+			
+			log.info("Hello world");
+		});
 		$('#facebook-post').click(function() {
 			var pop = <%=pop%>;
 			var body = "just scored "+(pop)+"% on the Popularity Meter.  Find yours at http://goo.gl/oL7jfX";

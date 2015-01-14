@@ -5,11 +5,14 @@ var express = require('express');
 var url = require('url');
 var FB = require('fb');
 var bunyan = require('bunyan');
+var bodyParser   = require('body-parser');
+
 var config = require('./config');
 
 var app = express();
 
 app.use('/static', express.static(__dirname + '/static'));
+app.use(bodyParser());
 app.set('view engine', 'ejs');
 
 var log = bunyan.createLogger({
@@ -121,14 +124,21 @@ app.get('/results', function(req, res) {
 	});
     //Log an error?
 	
-    });
+});
     
-    app.get('/contact', function(req, res) {
-        res.render('pages/contact');
-    });
+app.get('/contact', function(req, res) {
+    res.render('pages/contact');
+});
 
-    app.get('/privacy-policy', function(req, res) {
-        res.render('pages/privacy-policy');
-    });
+app.get('/privacy-policy', function(req, res) {
+    res.render('pages/privacy-policy');
+});
+
+app.post('/log', function(req, res) {
+    console.log(req)
+    res.json({success: true});
+});
+
+
 app.listen(config.port);
 log.info('Server has started on port ' + config.port);
