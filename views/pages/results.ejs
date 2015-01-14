@@ -64,10 +64,9 @@
 	</script>
 	<script>
 		$(document).ready(function() {
-			var log = log4javascript.getDefaultLogger();
+			var log = log4javascript.getLogger();
 			var ajaxAppender = new log4javascript.AjaxAppender('/log');
 			log.addAppender(ajaxAppender);
-			
 			log.info("Hello world");
 		});
 		$('#facebook-post').click(function() {
