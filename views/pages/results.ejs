@@ -67,19 +67,25 @@
 			var log = log4javascript.getLogger();
 			var ajaxAppender = new log4javascript.AjaxAppender('/log');
 			log.addAppender(ajaxAppender);
-			log.info("Hello world");
+			log.info(JSON.stringify({type: 'action', action: 'jQuery Loaded'}));
+
+			$('#facebook-post').click(function() {
+				log.info(JSON.stringify({type: 'action', action: 'Post Pressed'}));
+				var pop = <%=pop%>;
+				var body = "just scored "+(pop)+"% on the Popularity Meter.  Find yours at http://goo.gl/oL7jfX";
+				FB.api('/me/feed', 'post', { message: body }, function(response) {
+					log.info(JSON.stringify({type: 'action', action: 'API Success'}));
+					if (!response || response.error) {
+						log.info(JSON.stringify({type: 'action', action: 'Post Fail'}));
+						alert('Error occured:'+ JSON.stringify(response.error));
+					} else {
+						log.info(JSON.stringify({type: 'action', action: 'Post Success'}));
+						alert("Post successful!");
+					}
+				});
+			})
 		});
-		$('#facebook-post').click(function() {
-			var pop = <%=pop%>;
-			var body = "just scored "+(pop)+"% on the Popularity Meter.  Find yours at http://goo.gl/oL7jfX";
-			FB.api('/me/feed', 'post', { message: body }, function(response) {
-				if (!response || response.error) {
-					alert('Error occured:'+ JSON.stringify(response.error));
-				} else {
-					alert("Post successful!");
-				}
-			});
-		})
+		
  	</script>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];

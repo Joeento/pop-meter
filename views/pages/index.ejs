@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="/static/js/libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/js/libs/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/js/libs/bootstrap-social/bootstrap-social.css">
-	<link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
 
@@ -45,6 +44,17 @@
 	</footer>
 	<script src="/static/js/libs/log4javascript/log4javascript.js"></script>
 	<script src="/static/js/libs/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".btn-facebook").on('click',function() {
+				var log = log4javascript.getLogger();
+				var ajaxAppender = new log4javascript.AjaxAppender('/log');
+				log.addAppender(ajaxAppender);
+				log.info(JSON.stringify({type: 'action', action: 'fb clicked'}));
+			});
+		});
+		
+	</script>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		(function() {

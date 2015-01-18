@@ -31,18 +31,18 @@ var log = bunyan.createLogger({
 
 
 app.get('/', function(req, res) {
-    log.info('index');
+    log.info({type: 'page', page: 'index'});
 	res.render('pages/index');
 });
 
 app.get('/auth', function(req, res) {
 	var redirect_uri = encodeURIComponent(req.protocol + '://' + req.headers.host + '/results');
-    log.info('auth');
+    log.info({type: 'page', page: 'auth'});
 	res.redirect('https://www.facebook.com/dialog/oauth?client_id=' + config.app_id + '&redirect_uri=' + redirect_uri + '&scope=publish_stream,read_stream,user_photos,friends_photos');
 });
 
 app.get('/results', function(req, res) {
-    log.info('results');
+    log.info({type: 'page', page: 'results'});
     var url_parts = url.parse(req.url, true);
 	FB.api('oauth/access_token', {
     	client_id: config.app_id,
@@ -50,7 +50,7 @@ app.get('/results', function(req, res) {
     	redirect_uri: req.protocol + '://' + req.headers.host + '/results',
     	code: url_parts.query.code
 	}, function (response) {
-        log.info({code: url_parts.query.code,response: response},'access_token');
+        log.info({type: 'result', code: url_parts.query.code,response: response},'access_token');
     	if(!response || response.error) {
             log.error({level: 'response', error: response.error});
             res.redirect('/');
@@ -110,7 +110,7 @@ app.get('/results', function(req, res) {
                         image = 90;
                         desc = 'Wow!  You are incredibly popular, you have lots of friends and are constantly being included.  Congratulations!!!';
                     }
-                    log.info({pop: pop, math: '(('  +total_friends+'/'+max_friends+')*20)' 
+                    log.info({type: 'result', pop: pop, math: '(('  +total_friends+'/'+max_friends+')*20)' 
                         + '+ ((' + total_photos+ '/'+max_photos+')*10)'
                         +' + ((' + total_likes + '/'+max_likes+'*10) + 60;'}, 'success');
 
@@ -135,7 +135,7 @@ app.get('/privacy-policy', function(req, res) {
 });
 
 app.post('/log', function(req, res) {
-    console.log(req)
+    log.info(JSON.parse(req.body.message));
     res.json({success: true});
 });
 
